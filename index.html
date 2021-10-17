@@ -1,6 +1,12 @@
+<script
+  src="https://cdn.socket.io/4.2.0/socket.io.min.js"
+  integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj"
+  crossorigin="anonymous"
+></script>
 <script>
-  const ws = new WebSocket("ws://localhost:8000");
-  ws.onmessage = (event) => {
-    console.log(event);
-  };
+  const ws = io("ws://localhost:8000");
+  ws.on("connection", (data) => {
+    console.log(data);
+    ws.on("welcome", (msg) => console.log(msg));
+  });
 </script>
